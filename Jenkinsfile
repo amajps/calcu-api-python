@@ -6,11 +6,16 @@ pipeline{
 	}
 	
 	stages {
+		 stage('Bandit') {
+        		  steps {
+	              		sh 'bandit -r .'
+        		  }
 		stage('Checkout'){
 			steps{
 				checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/amajps/calcu-api-python']]]) 
 			}
 		}
+		 
 	
 		stage ('build'){
 			steps{
